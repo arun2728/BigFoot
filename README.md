@@ -12,4 +12,7 @@ Deployed different ML models using flask on static webpages...
 * templates : Contain static html files
 * app.py : Python file containing flask and ML model code.
 
+**Additional feature of contact**
 
+User can write his/her query and send message to bigfoot. After sending the message user will get a verfication email from bigfoot and at the same time bigfoot will be notified by user details.
+'bigfootmail.png' and 'client_mail.png' displays mail format for respective end.

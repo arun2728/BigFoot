@@ -6,14 +6,6 @@ from sklearn.preprocessing import MinMaxScaler
 
 app = Flask(__name__)
 
-# Load Models
-iris = pickle.load(open('templates/Supervised/Classification/Iris_Classifier/iris.pkl', 'rb'))
-performance = pickle.load(open('templates/Supervised/Regression/Vehicle Performance/performance.pkl', 'rb'))
-diabeties = pickle.load(open('templates/Supervised/Classification/Diabeties/diabeties.pkl', 'rb'))
-insurance = pickle.load(open('templates/Supervised/Classification/Insurance_Policy/insurance.pkl', 'rb'))
-price_range = pickle.load(open("templates/Supervised/Classification/Mobile_Price_Classification/Mobile_price.pkl", 'rb'))
-personal_loan = pickle.load(open("templates/Supervised/Classification/Personal_Loan/Personal.pkl", 'rb'))
-
 @app.route('/')
 def man():
     return render_template('home.html')
@@ -29,6 +21,8 @@ def predict_iris():
     #scaler = StandardScaler()
     #arr = scaler.fit_transform(arr)
     print(arr,data1,data2,data3,data4)
+
+    iris = pickle.load(open('templates/Supervised/Classification/Iris_Classifier/iris.pkl', 'rb'))
     pred = iris.predict(arr)[0]
     return render_template('/Supervised/Classification/Iris_Classifier/iris_prediction.html', data=pred)
 
@@ -54,6 +48,8 @@ def predict_vehicle_performance():
     arr = arr[392]
     arr = np.array([arr])
     print(arr)
+
+    performance = pickle.load(open('templates/Supervised/Regression/Vehicle Performance/performance.pkl', 'rb'))
     pred = np.exp(performance.predict(arr)[0])
     return render_template('Models.html' , performance_prediction = pred)
 
@@ -77,6 +73,8 @@ def predict_diabeties():
     print(arr,"asdas")
     arr = np.array([arr])
     print(arr)
+
+    diabeties = pickle.load(open('templates/Supervised/Classification/Diabeties/diabeties.pkl', 'rb'))
     pred = int(diabeties.predict(arr)[0])
     print(pred,"asdadfdfd")
     return render_template('Models.html', diabeties_prediction=pred)
@@ -137,6 +135,8 @@ def predict_insurance():
     arr = arr[79853]
     arr = np.array([arr])
     print(pd.DataFrame(arr))
+
+    insurance = pickle.load(open('templates/Supervised/Classification/Insurance_Policy/insurance.pkl', 'rb'))
     pred = int(insurance.predict(arr)[0])
     return render_template('Models.html', insurance_prediction=pred)
 
@@ -156,6 +156,8 @@ def predict_price_range():
     print(pd.DataFrame(arr).tail())
     arr = arr[2000]
     arr = np.array([arr])
+
+    price_range = pickle.load(open("templates/Supervised/Classification/Mobile_Price_Classification/Mobile_price.pkl", 'rb'))
     pred = price_range.predict(arr)[0]
     print(pred)
     return render_template('Models.html', price_range_prediction=pred)
@@ -215,7 +217,7 @@ def predict_personal_loan():
     arr = arr[4948]
     arr = np.array([arr])
 
-
+    personal_loan = pickle.load(open("templates/Supervised/Classification/Personal_Loan/Personal.pkl", 'rb'))
     pred = personal_loan.predict(arr)[0]
     print(pred)
     return render_template('Models.html', personal_loan_prediction=pred)

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Big Foot</title>
+        <title>Agency - Start Bootstrap Theme</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
@@ -17,30 +17,24 @@
         <link rel = "stylesheet" type = "text/css" href="{{ url_for('static', filename = 'css/styles1.css')}}"  />
 
     </head>
-    <body id="page-top" >
-        
-        
+    <body id="page-top" style="background-color:#6c757d;">
+        <!--<form method="post", action="/home">
+            <center>
+                <button type="submit" , value='home!' class="btn btn-primary">
+                                                Home
+                </button>
+            </center>
+        </form>--><br>
+        <h3 align="center">
+            <a href="/Home" >
+                <i class="fas fa-home" ></i>
+            </a>
+        </h3>
+
         <!-- Portfolio Grid-->
         <section class="page-section bg-light" id="portfolio">
-            <h4 align="center" >
-                        <a href="/Home">
-                                <i class="fas fa-home"></i>
-                                
-                        </a>
-                        
-            </h4>
             <div class="container">
                 <div class="text-center">
-                    <!--
-                    <h4 align="center" >
-                        <a href="/Home">
-                                <i class="fas fa-home"></i>
-                                
-                        </a>
-                    
-                    </h4>
-                    -->
-                    <br>
                     <h2 class="section-heading text-uppercase">ML Models</h2>
                     <h3 class="section-subheading text-muted">Classification and Regression Models</h3>
                 </div>
@@ -144,12 +138,12 @@
                                 <div class="modal-body">
                                     <!-- Project Details Go Here-->
                                     <center>
-                                        <h1> Iris Flower Detection </h1><br>
+                                        <h1> IRIS FLOWER DETECTION </h1><br>
                                         <form method="post", action="/predict_iris">
-                                           <b> Sepel Length :  <input type="text", name='spl', placeholder="Sepel Length(cm)" required> <br><br>
-                                            Sepel Width :  <input type="text", name='spw', placeholder="Sepel Width(cm)" required> <br><br>
-                                            Petal Length :  <input type="text", name='ptl', placeholder="Petal Length(cm)" required> <br><br>
-                                            Petal Width : <input type="text", name='ptw', placeholder="Petal Width(cm)" required> <br><br><br></b>
+                                           <b> Sepel Length :  <input type="text", name='spl', placeholder="Sepel Length(cm)"> <br><br>
+                                            Sepel Width :  <input type="text", name='spw', placeholder="Sepel Width(cm)"> <br><br>
+                                            Petal Length :  <input type="text", name='ptl', placeholder="Petal Length(cm)"> <br><br>
+                                            Petal Width : <input type="text", name='ptw', placeholder="Petal Width(cm)"> <br><br><br></b>
                                             <button type="submit" , value='predict_iris!' class="btn btn-primary" >
                                                 Predict
                                             </button>
@@ -157,23 +151,6 @@
                                         </form>
                                     </center>
                                     <br>
-                                    <script type = "text/javascript">
-                                        
-                                        var a = {{ iris_prediction }};
-                                        
-                                        if(a == 0)
-                                        {
-                                            alert("Flower is Iris-Setosa");
-                                        }
-                                        else if(a == 1)
-                                        {
-                                            alert("Flower is Iris-Verci");
-                                        }
-                                        else if(a == 2)
-                                        {
-                                            alert("Flower is Iris-Verginia");
-                                        }
-                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -195,12 +172,12 @@
                                         <h1> Vehicle Performance </h1><br>
                                         <form method="post", action="/predict_vehicle_performance">
                                            <b>
-                                               Year : <input type="text", name='year', placeholder="Year of Car Model" required> <br><br>
-                                               Weight : <input type="text", name='weight', placeholder="Weight of Car(pounds)" required> <br><br>
-                                               Cylinders :  <input type="text", name='cylinders', placeholder="Number of Cylinders" required> <br><br>
-                                               Horse Power :  <input type="text", name='power', placeholder="Horse Power" required> <br><br>
-                                               Displacement :  <input type="text", name='displacement', placeholder="Displacement" required> <br><br>
-                                               Acceleration : <input type="text", name='acceleration', placeholder="Acceleration of Car" required> <br><br><br>
+                                               Year : <input type="text", name='year', placeholder="Year of Car Model"> <br><br>
+                                               Weight : <input type="text", name='weight', placeholder="Weight of Car(pounds)"> <br><br>
+                                               Cylinders :  <input type="text", name='cylinders', placeholder="Number of Cylinders"> <br><br>
+                                               Horse Power :  <input type="text", name='power', placeholder="Horse Power"> <br><br>
+                                               Displacement :  <input type="text", name='displacement', placeholder="Displacement"> <br><br>
+                                               Acceleration : <input type="text", name='acceleration', placeholder="Acceleration of Car"> <br><br><br>
                                            </b>
                                            <button type="submit" , value='predict_vehicle_performance!' class="btn btn-primary">
                                                 Predict
@@ -213,13 +190,11 @@
                                     </center>
                                     <br>
                                     <script type = "text/javascript">
-                                        
+                                        {% if performance_prediction %}
                                         var a = {{ performance_prediction }};
                                         var b = "Predicted Mileage is ";
-                                        if(a != "")
-                                        {
-                                            alert(b.concat(a));
-                                        }
+                                        alert(b.concat(a));
+                                        {% endif %}
                                     </script>
                                 </div>
                             </div>
@@ -242,14 +217,14 @@
                                         <h1> Diabeties Prediction </h1><br>
                                         <form method="post", action="/predict_diabeties">
                                            <b>
-                                               Age : <input type="text", name='Age', placeholder="Age" required> <br><br>
-                                               BMI : <input type="text", name='BMI', placeholder="Body Mass Index" required> <br><br>
-                                               Insulin :  <input type="text", name='Insulin', placeholder="Insulin level" required> <br><br>
-                                               Glucose :  <input type="text", name='Glucose', placeholder="Glucose level" required> <br><br>
-                                               Pregnancies :  <input type="text", name='Pregnancies', placeholder="Number of Pregnancies" required> <br><br>
-                                               Blood Pressure :  <input type="text", name='BloodPressure', placeholder="Blood Pressure" required> <br><br>
-                                               Skin Thickness :  <input type="text", name='SkinThickness', placeholder="Skin Thickness (mm)" required> <br><br>
-                                               Diabetes Pedigree Function : <input type="text", name='DiabetesPedigreeFunction', placeholder="Diabetes Pedigree Function" required> <br><br><br>
+                                               Age : <input type="text", name='Age', placeholder="Age"> <br><br>
+                                               BMI : <input type="text", name='BMI', placeholder="Body Mass Index"> <br><br>
+                                               Insulin :  <input type="text", name='Insulin', placeholder="Insulin level"> <br><br>
+                                               Glucose :  <input type="text", name='Glucose', placeholder="Glucose level"> <br><br>
+                                               Pregnancies :  <input type="text", name='Pregnancies', placeholder="Number of Pregnancies"> <br><br>
+                                               Blood Pressure :  <input type="text", name='BloodPressure', placeholder="Blood Pressure"> <br><br>
+                                               Skin Thickness :  <input type="text", name='SkinThickness', placeholder="Skin Thickness (mm)"> <br><br>
+                                               Diabetes Pedigree Function : <input type="text", name='DiabetesPedigreeFunction', placeholder="Diabetes Pedigree Function"> <br><br><br>
                                            </b>
                                            <button type="submit" , value='predict_diabeties!' class="btn btn-primary">
                                                 Predict
@@ -257,17 +232,19 @@
                                             <br>
                                         </form>
                                     </center>
-                                    <script type = "text/javascript">
-                                        var a = {{ diabeties_prediction }};
+                                    {% if diabeties_prediction %}
+                                        <script type = "text/javascript">
+                                        var a = Number({{ diabeties_prediction }});
 
                                         if(a == 1)
                                         {
                                             alert("You are diabetic");
                                         }
-                                        if(a == 0){
+                                        else{
                                             alert("No need to worry. You are healthy");
                                         }
-                                    </script>
+                                        </script>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -290,16 +267,16 @@
                                     <center>
                                         <form method="post", action="/predict_insurance">
                                            <b>
-                                               Age :  <input type="text", name='days', placeholder="Age in years" required> <br><br>
-                                               Income :  <input type="text", name='income', placeholder="Annual income" required> <br><br>
-                                               Insurance Score : <input type="text", name='writing_score', placeholder="Insurance Score" required> <br><br>
-                                               Residential Area : <input type="text", name='area', placeholder="Residential (Urban/Rural)" required> <br><br>
-                                               Insurance channel :  <input type="text", name='channel', placeholder="Insurance Channel Used" required> <br><br>
-                                               Percent Premium Paid : <input type="text", name='percent_paid', placeholder="Percent paid using credit" required> <br><br>
-                                               Number of Paid Premiums : <input type="text", name='paid_premiums', placeholder="Number of paid premiums" required> <br><br>
-                                               Late premium's for 3-6 Months :  <input type="text", name='3_6_months', placeholder="Count of 3-6 Months" required> <br><br>
-                                               Late premium's for 6-12 Months :  <input type="text", name='6_12_months', placeholder="Count of 6-12 Months" required> <br><br>
-                                               Late premium's for More than 12 Months :  <input type="text", name='more_12_months', placeholder="Count of more than 12" required> <br><br><br>
+                                               Age :  <input type="text", name='days', placeholder="Age in years"> <br><br>
+                                               Income :  <input type="text", name='income', placeholder="Annual income"> <br><br>
+                                               Insurance Score : <input type="text", name='writing_score', placeholder="Insurance Score"> <br><br>
+                                               Residential Area : <input type="text", name='area', placeholder="Residential (Urban/Rural)"> <br><br>
+                                               Insurance channel :  <input type="text", name='channel', placeholder="Insurance Channel Used"> <br><br>
+                                               Percent Premium Paid : <input type="text", name='percent_paid', placeholder="Percent paid using credit"> <br><br>
+                                               Number of Paid Premiums : <input type="text", name='paid_premiums', placeholder="Number of paid premiums"> <br><br>
+                                               Late premium's for 3-6 Months :  <input type="text", name='3_6_months', placeholder="Count of 3-6 Months"> <br><br>
+                                               Late premium's for 6-12 Months :  <input type="text", name='6_12_months', placeholder="Count of 6-12 Months"> <br><br>
+                                               Late premium's for More than 12 Months :  <input type="text", name='more_12_months', placeholder="Count of more than 12"> <br><br><br>
                                            </b>
                                            <button type="submit" , value='predict_insurance!' class="btn btn-primary">
                                                 Predict
@@ -307,20 +284,17 @@
                                             <br>
                                         </form>
                                     </center>
-                                    <script type = "text/javascript">
-                                        var a = {{ insurance_prediction }};
-                                        
+                                    {% if insurance_prediction %}
+                                        <script type = "text/javascript">
+                                        var a = Number({{ insurance_prediction }});
+                                        var b = "Customer have some negative insights";
                                         if(a == 1)
                                         {
-                                            alert("No need to worry Customer will pay on time");
+                                            b = "No need to worry Customer will pay on time";
                                         }
-                                        else if (a == 0)
-                                        {
-                                            alert("Customer have some negative insights");
-                                        }
-                                        
-                                    </script>
-                                    
+                                        alert(b);
+                                        </script>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -343,20 +317,20 @@
                                     <center>
                                         <form method="post", action="/predict_price_range">
                                            <b>
-                                               Clock Speed :  <input type="text", name='clock_speed', placeholder="Processor speed (MHz)" required> <br><br>
-                                               Mobile Depth :  <input type="text", name='m_dep', placeholder="Mobile Depth in cm" required> <br><br>
-                                               Screen Height :  <input type="text", name='sc_h', placeholder="Screen Height in cm" required> <br><br>
-                                               Screen Weight :  <input type="text", name='sc_w', placeholder="Screen Width in cm" required> <br><br>
-                                               Battery Power :  <input type="text", name='battery_power', placeholder="Battery Power" required> <br><br>
-                                               Primary Camera :  <input type="text", name='pc', placeholder="Camera in mega pixels" required> <br><br>
-                                               Number of cores : <input type="text", name='n_cores', placeholder="Number of cores" required> <br><br>
-                                               Internal Memory : <input type="text", name='int_memory', placeholder="Storage memory (GB)" required> <br><br>
-                                               Random Access Memory : <input type="text", name='ram', placeholder="RAM (GB)" required> <br><br>
-                                               Weight of mobile phone : <input type="text", name='mobile_wt', placeholder="Weight in gram" required> <br><br>
-                                               Pixel Resolution Width :  <input type="text", name='px_width', placeholder="Pixel Resolution Width" required> <br><br>
-                                               Pixel Resolution Height :  <input type="text", name='px_height', placeholder="Pixel Resolution Height" required> <br><br>
-                                               Front Camera mega pixels : <input type="text", name='fc', placeholder="Front Camera mega pixels" required> <br><br>
-                                               Single Battery Charge Lasting Time :  <input type="text", name='talk_time', placeholder="single battery charge will last" required> <br><br><br>
+                                               Clock Speed :  <input type="text", name='clock_speed', placeholder="Processor speed (MHz)"> <br><br>
+                                               Mobile Depth :  <input type="text", name='m_dep', placeholder="Mobile Depth in cm"> <br><br>
+                                               Screen Height :  <input type="text", name='sc_h', placeholder="Screen Height in cm"> <br><br>
+                                               Screen Weight :  <input type="text", name='sc_w', placeholder="Screen Width in cm"> <br><br>
+                                               Battery Power :  <input type="text", name='battery_power', placeholder="Battery Power"> <br><br>
+                                               Primary Camera :  <input type="text", name='pc', placeholder="Camera in mega pixels"> <br><br>
+                                               Number of cores : <input type="text", name='n_cores', placeholder="Number of cores"> <br><br>
+                                               Internal Memory : <input type="text", name='int_memory', placeholder="Storage memory (GB)"> <br><br>
+                                               Random Access Memory : <input type="text", name='ram', placeholder="RAM (GB)"> <br><br>
+                                               Weight of mobile phone : <input type="text", name='mobile_wt', placeholder="Weight in gram"> <br><br>
+                                               Pixel Resolution Width :  <input type="text", name='px_width', placeholder="Pixel Resolution Width"> <br><br>
+                                               Pixel Resolution Height :  <input type="text", name='px_height', placeholder="Pixel Resolution Height"> <br><br>
+                                               Front Camera mega pixels : <input type="text", name='fc', placeholder="Front Camera mega pixels"> <br><br>
+                                               Single Battery Charge Lasting Time :  <input type="text", name='talk_time', placeholder="single battery charge will last"> <br><br><br>
                                            </b>
                                            <button type="submit" , value='predict_price_range!' class="btn btn-primary">
                                                 Predict
@@ -369,10 +343,10 @@
                                         if(a == 2){
                                             alert("Mobile will have higher cost");
                                         }
-                                        if(a == 0){
+                                        else if(a == 0){
                                             alert("Mobile will have low price");
                                         }
-                                        if(a == 1){
+                                        else{
                                             alert("Mobile will be of mid range");
                                         }
 
@@ -400,16 +374,16 @@
                                     <center>
                                         <form method="post", action="/predict_personal_loan">
                                            <b>
-                                               Income :  <input type="text", name='Income', placeholder="Customer Annual Income($)" required> <br><br>
-                                               Family :  <input type="text", name='Family', placeholder="Customer Family Size" required> <br><br>
-                                               Experience :  <input type="text", name='Experience', placeholder="Work Experiences in years" required> <br><br>
-                                               Average Spending :  <input type="text", name='CCAvg', placeholder="Spending on credit cards per month($)" required> <br><br>
-                                               Education Qualification:  <input type="text", name='Education', placeholder="Undergrad/Grad/Prof" required> <br><br>
-                                               Value of house mortgage :  <input type="text", name='Mortgage', placeholder="Value of house mortgage" required> <br><br>
-                                               Customer use a credit card : <input type="text", name='CreditCard', placeholder="Yes/No" required> <br><br>
-                                               Customer have a securities account : <input type="text", name='Securities', placeholder="Yes/No" required> <br><br>
-                                               Customer use internet banking facilities : <input type="text", name='Online', placeholder="Yes/No" required> <br><br>
-                                               Customer have a certificate of deposit account : <input type="text", name='Account', placeholder="Yes/No" required> <br><br><br>
+                                               Income :  <input type="text", name='Income', placeholder="Customer Annual Income($)"> <br><br>
+                                               Family :  <input type="text", name='Family', placeholder="Customer Family Size"> <br><br>
+                                               Experience :  <input type="text", name='Experience', placeholder="Work Experiences in years"> <br><br>
+                                               Average Spending :  <input type="text", name='CCAvg', placeholder="Spending on credit cards per month($)"> <br><br>
+                                               Education Qualification:  <input type="text", name='Education', placeholder="Undergrad/Grad/Prof"> <br><br>
+                                               Value of house mortgage :  <input type="text", name='Mortgage', placeholder="Value of house mortgage"> <br><br>
+                                               Customer use a credit card : <input type="text", name='CreditCard', placeholder="Yes/No"> <br><br>
+                                               Customer have a securities account : <input type="text", name='Securities', placeholder="Yes/No"> <br><br>
+                                               Customer use internet banking facilities : <input type="text", name='Online', placeholder="Yes/No"> <br><br>
+                                               Customer have a certificate of deposit account : <input type="text", name='Account', placeholder="Yes/No"> <br><br><br>
                                            </b>
                                            <button type="submit" , value='predict_personal_loan!' class="btn btn-primary">
                                                 Predict
@@ -422,7 +396,7 @@
                                         if(a == 1){
                                             alert("Customer will accept the loan");
                                         }
-                                        if(a == 0){
+                                        else{
                                             alert("Customer will decline the loan");
                                         }
 

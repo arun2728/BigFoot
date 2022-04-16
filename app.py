@@ -30,7 +30,7 @@ def predict_iris():
     #arr = scaler.fit_transform(arr)
     print(arr,data1,data2,data3,data4)
     pred = iris.predict(arr)[0]
-    return render_template('Models.html' , iris_prediction = pred)
+    return render_template('/Supervised/Classification/Iris_Classifier/iris_prediction.html', data=pred)
 
 @app.route('/predict_vehicle_performance', methods=['POST'])
 def predict_vehicle_performance():
@@ -232,11 +232,6 @@ def datasets():
     return render_template('Datasets_home.html')
 
 
-@app.route('/models', methods=['POST'])
-def models():
-    return render_template('Models.html')
-
-
 @app.route('/concepts', methods=['POST'])
 def concepts():
     return render_template('Content.html')
@@ -250,6 +245,9 @@ def Datasets():
 def Home():
     return render_template('home.html')
 
+@app.route('/models', methods=['POST'])
+def models():
+    return render_template('Models.html')
 
 @app.route('/classify_dataset')
 def classify_dataset():
@@ -270,4 +268,4 @@ def vision_dataset():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=8000)

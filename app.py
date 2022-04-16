@@ -18,10 +18,7 @@ def predict_iris():
     data3 = request.form['ptl']
     data4 = request.form['ptw']
     arr = np.array([[float(data1), float(data2), float(data3), float(data4)]])
-    #scaler = StandardScaler()
-    #arr = scaler.fit_transform(arr)
-    print(arr,data1,data2,data3,data4)
-
+    
     iris = pickle.load(open('templates/Supervised/Classification/Iris_Classifier/iris.pkl', 'rb'))
     pred = iris.predict(arr)[0]
     return render_template('/Supervised/Classification/Iris_Classifier/iris_prediction.html', data=pred)
@@ -38,16 +35,12 @@ def predict_vehicle_performance():
 
     data = pd.read_csv('templates/Supervised/Regression/Vehicle Performance/standard.csv')
     data_entered = pd.DataFrame([[cylinders, displacement, power, weight, acceleration, year]], columns=data.columns.values)
-    print(data.tail())
-
-    print(data.tail())
     scaler = MinMaxScaler()
     scaler.fit(data)
     data = data.append(data_entered)
     arr = scaler.fit_transform(data)
     arr = arr[392]
     arr = np.array([arr])
-    print(arr)
 
     performance = pickle.load(open('templates/Supervised/Regression/Vehicle Performance/performance.pkl', 'rb'))
     pred = np.exp(performance.predict(arr)[0])
@@ -61,22 +54,15 @@ def predict_diabeties():
     data_entered = pd.DataFrame(
         [[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]],
         columns=data.columns.values)
-    print(data.tail())
-
-    print(data.tail())
     scaler = MinMaxScaler()
     scaler.fit(data)
     data = data.append(data_entered)
     arr = scaler.fit_transform(data)
-    print(arr)
     arr = arr[768]
-    print(arr,"asdas")
     arr = np.array([arr])
-    print(arr)
 
     diabeties = pickle.load(open('templates/Supervised/Classification/Diabeties/diabeties.pkl', 'rb'))
     pred = int(diabeties.predict(arr)[0])
-    print(pred,"asdadfdfd")
     return render_template('Models.html', diabeties_prediction=pred)
 
 @app.route('/predict_insurance', methods=['POST'])
@@ -122,19 +108,13 @@ def predict_insurance():
     data = pd.read_csv('templates/Supervised/Classification/Insurance_Policy/scale.csv')
     data_entered = pd.DataFrame([[percent_paid, days, income, months_3_6_, months_6_12_, more_than_12_months,
                                   writing_score, paid_premiums, channel, area]], columns=data.columns.values)
-    print(data.tail())
-
-    print(data.tail())
     scaler = MinMaxScaler()
     scaler.fit(data)
     data = data.append(data_entered)
     arr = scaler.fit_transform(data)
-    print(arr, "asd")
-    print(pd.DataFrame(arr))
 
     arr = arr[79853]
     arr = np.array([arr])
-    print(pd.DataFrame(arr))
 
     insurance = pickle.load(open('templates/Supervised/Classification/Insurance_Policy/insurance.pkl', 'rb'))
     pred = int(insurance.predict(arr)[0])
@@ -152,14 +132,11 @@ def predict_price_range():
     scaler.fit(data)
     data = data.append(data_entered)
     arr = scaler.fit_transform(data)
-    print(arr , "asd")
-    print(pd.DataFrame(arr).tail())
     arr = arr[2000]
     arr = np.array([arr])
 
     price_range = pickle.load(open("templates/Supervised/Classification/Mobile_Price_Classification/Mobile_price.pkl", 'rb'))
     pred = price_range.predict(arr)[0]
-    print(pred)
     return render_template('Models.html', price_range_prediction=pred)
 
 
